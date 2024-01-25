@@ -5,8 +5,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
+
+  <!-- calls for the arcgis API's CSS and JS files-->
+  <link rel="stylesheet" href="https://js.arcgis.com/4.25/esri/themes/light/main.css">
+  <script src="https://js.arcgis.com/4.25/"></script>
+
+  <!-- Adding the modules for full screen map app-->
+  <script>  
+    require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) { 
+      
+      esriConfig.apiKey = "AAPKad326cc7bcc84403ba8d6e5d75e1c216dZOCMYxyqe8Xx6vzlRhWc5FBpZ9YINE2zzacOcvncG8DsWXQT-2XA5QCTvQE3qT4";
+
+      const map = new Map({ 
+        basemap: "arcgis-topographic" // Basemap layer service 
+      });
+
+      const view = new MapView({
+      map: map,
+      center: [-66.5276, 18.4798], // Longitude, latitude
+      zoom: 13, // Zoom level
+      container: "viewDiv" // Div element
+      });
+
+    });  
+   </script>
+
+  <!-- styling for the vewDiv-->
+  <style>  
+    html,  
+    body,  
+    #viewDiv {  
+      padding: 0;  
+      margin: 0;  
+      height: 100%;  
+      width: 100%;  
+      }  
+    </style> 
+
+
 </head>
 <body>
-  <h1>Hello, world! Testing the version control.</h1>
+  <div id="viewDiv"></div> 
 </body>
 </html>
