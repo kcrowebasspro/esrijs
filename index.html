@@ -12,7 +12,7 @@
 
   <!-- Adding the modules for full screen map app-->
   <script>  
-    require(["esri/config", "esri/Map", "esri/views/MapView"], function(esriConfig, Map, MapView) { 
+    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/widgets/BasemapGallery"], function(esriConfig, Map, MapView) { 
       
       esriConfig.apiKey = "AAPKad326cc7bcc84403ba8d6e5d75e1c216dZOCMYxyqe8Xx6vzlRhWc5FBpZ9YINE2zzacOcvncG8DsWXQT-2XA5QCTvQE3qT4";
 
@@ -28,6 +28,18 @@
       zoom: 16, // Zoom level
       container: "viewDiv" // Div element
       });
+
+      //Create a basemap gallery for users to change types
+      const basemapGallery = new BasemapGallery({
+        view: view,
+        container: "basemapGalleryDiv"
+      });
+
+    // Add widget to the top right corner of the view
+      view.ui.add(basemapGallery, {
+        position: "top-right"
+        });
+
 
     });  
    </script>
@@ -48,5 +60,6 @@
 </head>
 <body>
   <div id="viewDiv"></div> 
+  <div id="basemapGalleryDiv"></div>
 </body>
 </html>
