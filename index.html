@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Kevin's first ESRI JS map</title>
+  <title>All hail Machuca</title>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
@@ -13,8 +13,8 @@
 
   <!-- Adding the modules for full screen map app-->
   <script>  
-    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Basemap", "esri/widgets/BasemapGallery", "esri/widgets/Locate", 
-    "esri/widgets/Search"], (esriConfig, Map, MapView, BasemapGallery, Locate, Search) => { 
+    require(["esri/config", "esri/Map", "esri/views/MapView",  "esri/widgets/Locate", 
+    "esri/widgets/Search", "esri/widgets/BasemapGallery"], (esriConfig, Map, MapView, Locate, Search, BasemapGallery) => { 
       
       esriConfig.apiKey = "AAPKad326cc7bcc84403ba8d6e5d75e1c216dZOCMYxyqe8Xx6vzlRhWc5FBpZ9YINE2zzacOcvncG8DsWXQT-2XA5QCTvQE3qT4";
 
@@ -36,7 +36,11 @@
         view: view   // Attaches the Locate button to the view
       });
 
-      view.ui.add(locateWidget, "top-right");
+      //Add the Locate widget to the view object
+      view.ui.add(locateWidget, {
+        position: "top-left",
+        index: 2
+      });
 
       //Add a search widget window
       const searchWidget = new Search({
@@ -45,9 +49,20 @@
       // Adds the search widget below other elements in
       // the top left corner of the view
       view.ui.add(searchWidget, {
-        position: "top-left",
+        position: "top-right",
         index: 2
       });
+
+      //create a basemap gallery for changing out base layers
+      const basemapGallery = new BasemapGallery({
+        view: view
+      });
+      // Add widget to the top right corner of the view
+      view.ui.add(basemapGallery, {
+        position: "top-right",
+        index: 2
+      });
+
 
 
     });  
