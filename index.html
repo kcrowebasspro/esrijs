@@ -14,13 +14,13 @@
   <!-- Adding the modules for full screen map app-->
   <script>  
     require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Basemap", "esri/widgets/BasemapGallery", "esri/widgets/Locate", 
-    "esri/widgets/Search", "esri/widgets/BasemapToggle"], (esriConfig, Map, MapView, BasemapGallery, Locate, Search, BasemapToggle) => { 
+    "esri/widgets/Search"], (esriConfig, Map, MapView, BasemapGallery, Locate, Search) => { 
       
       esriConfig.apiKey = "AAPKad326cc7bcc84403ba8d6e5d75e1c216dZOCMYxyqe8Xx6vzlRhWc5FBpZ9YINE2zzacOcvncG8DsWXQT-2XA5QCTvQE3qT4";
 
       //create the map
       const map = new Map({
-        basemap: "topo-vector"
+        basemap: "arcgis-imagery"
       });
 
       //Creating the overall map view and sending it to the viewDiv container
@@ -30,25 +30,7 @@
         zoom: 16, // Zoom level
         container: "viewDiv" // Div element
       });
-    /*
-      // 1 - Create the widget
-      const toggle = new BasemapToggle({
-        // 2 - Set properties
-        view: view, // view that provides access to the map's 'topo-vector' basemap
-        nextBasemap: "hybrid" // allows for toggling to the 'hybrid' basemap
-      });
 
-      view.ui.add(toggle, "top-right");
-
-  
-      //Create a basemap gallery for users to change types
-      const basemapGallery = new BasemapGallery({
-        view: view
-      });
-
-      // Add the widget to the top-right corner of the view
-      view.ui.add(basemapGallery, "top-right");
-*/
       //Add a locate button
       const locateWidget = new Locate({
         view: view   // Attaches the Locate button to the view
@@ -56,6 +38,7 @@
 
       view.ui.add(locateWidget, "top-right");
 
+      //Add a search widget window
       const searchWidget = new Search({
         view: view
       });
@@ -65,7 +48,6 @@
         position: "top-left",
         index: 2
       });
-
 
 
     });  
