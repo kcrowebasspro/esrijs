@@ -8,30 +8,19 @@
 
   <!-- calls for the arcgis API's CSS and JS files-->
   <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css" />
-  <!-- styling for the vewDiv-->
-  <style>  
-    html,  
-    body,  
-    #viewDiv {  
-      padding: 0;  
-      margin: 0;  
-      height: 100%;  
-      width: 100%;  
-      }  
-    </style> 
 
   <script src="https://js.arcgis.com/4.28/"></script>
 
   <!-- Adding the modules for full screen map app-->
   <script>  
-    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Basemap", "esri/widgets/BasemapGallery", "esri/widgets/Locate", "esri/widgets/Search"],
-    function(esriConfig, Map, MapView, BasemapGallery, Locate, Search) { 
+    require(["esri/config", "esri/Map", "esri/views/MapView", "esri/Basemap", "esri/widgets/BasemapGallery", "esri/widgets/Locate", 
+    "esri/widgets/Search", "esri/widgets/BasemapToggle"], (esriConfig, Map, MapView, BasemapGallery, Locate, Search, BasemapToggle) => { 
       
       esriConfig.apiKey = "AAPKad326cc7bcc84403ba8d6e5d75e1c216dZOCMYxyqe8Xx6vzlRhWc5FBpZ9YINE2zzacOcvncG8DsWXQT-2XA5QCTvQE3qT4";
 
       //create the map
       const map = new Map({
-        basemap: "arcgis-imagery"
+        basemap: "topo-vector"
       });
 
       //Creating the overall map view and sending it to the viewDiv container
@@ -41,7 +30,17 @@
         zoom: 16, // Zoom level
         container: "viewDiv" // Div element
       });
+    /*
+      // 1 - Create the widget
+      const toggle = new BasemapToggle({
+        // 2 - Set properties
+        view: view, // view that provides access to the map's 'topo-vector' basemap
+        nextBasemap: "hybrid" // allows for toggling to the 'hybrid' basemap
+      });
 
+      view.ui.add(toggle, "top-right");
+
+  
       //Create a basemap gallery for users to change types
       const basemapGallery = new BasemapGallery({
         view: view
@@ -56,7 +55,7 @@
       });
 
       view.ui.add(locateWidget, "top-right");
-
+*/
       const searchWidget = new Search({
         view: view
       });
@@ -71,6 +70,18 @@
 
     });  
    </script>
+
+  <!-- styling for the vewDiv-->
+  <style>  
+    html,  
+    body,  
+    #viewDiv {  
+      padding: 0;  
+      margin: 0;  
+      height: 100%;  
+      width: 100%;  
+      }  
+    </style> 
 
 </head>
 <body>
